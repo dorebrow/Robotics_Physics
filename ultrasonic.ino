@@ -12,13 +12,18 @@ void setup() {
 
 void loop () {
   digitalWrite(trigPin, LOW);
-  delayMicroseconds(10);
+  delayMicroseconds(2);
    
   digitalWrite(trigPin, HIGH);
   delayMicroseconds(10);
   digitalWrite(trigPin, LOW);
 
- //duration = pulseIn(echoPin, HIGH);
+ duration = pulseIn(echoPin, HIGH);
 
- // distance = duration*0.034/2;
+ distance = duration*0.034/2;
+
+ Serial.print("Distance: ");
+ Serial.print(distance);
+ Serial.print(" cm ");
+ Serial.print("\n");
 }
