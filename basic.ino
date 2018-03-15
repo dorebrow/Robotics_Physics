@@ -47,11 +47,11 @@ void loop () {
   //both motors forward
   digitalWrite(in1, HIGH);
   digitalWrite(in2, LOW);
-  analogWrite(enA, 200);
+  analogWrite(enA, 1);
 
   digitalWrite(in3, HIGH);
   digitalWrite(in4, LOW);
-  analogWrite(enB, 200);
+  analogWrite(enB, 1);
 
   delay(4000);
   }
