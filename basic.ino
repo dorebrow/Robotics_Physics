@@ -17,7 +17,12 @@ const int echoPin = 10;
 long duration;
 int distance;
 
+//variable to store the servo position
+int pos = 0;
+
 void setup() {
+  myservo.attach(2);
+  
   pinMode(enA, OUTPUT);
   pinMode(enB, OUTPUT);
   pinMode(in1, OUTPUT);
