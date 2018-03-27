@@ -24,10 +24,10 @@ int distance;
 int pos = 0;
 
 //range variable
-int range = 40;
+int range = 60;
 
 void setup() {
-  myservo.attach(2);
+  myservo.attach(3);
   
   pinMode(enA, OUTPUT);
   pinMode(enB, OUTPUT);
