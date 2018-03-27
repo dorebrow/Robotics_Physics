@@ -41,7 +41,7 @@ void setup() {
 }
 
 void loop () {
-  while(pos < 180){
+  while(pos < 270){
     myservo.write(pos);
     delay(15);
     
@@ -56,8 +56,9 @@ void loop () {
 
     Serial.print("Distance: "); 
     Serial.println(distance); 
-    delay(100); 
+    delay(15); 
 
+   Serial.print(pos);
 
     if (distance < range) {
       //both motors forward
@@ -91,9 +92,15 @@ void loop () {
 
    pos += 90;
    }
-
-   while(pos >= 180){
+   
+   while(pos >= 0){
+      Serial.print(pos);
       pos -= 90;
+      myservo.write(pos);
+      delay(15);
+      
+    duration = pulseIn(echoPin, HIGH);
+    distance = (duration*.0343)/2;
    
       if (distance < range) {
         // both motors forward
