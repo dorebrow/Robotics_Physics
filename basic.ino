@@ -20,6 +20,9 @@ int distance;
 //variable to store the servo position
 int pos = 0;
 
+//range variable
+int range = 40;
+
 void setup() {
   myservo.attach(2);
   
@@ -35,46 +38,117 @@ void setup() {
 }
 
 void loop () {
-  digitalWrite(trigPin, LOW); 
-  delayMicroseconds(2); 
-  digitalWrite(trigPin, HIGH); 
-  delayMicroseconds(10); 
-  digitalWrite(trigPin, LOW);
+  while(pos < 180){
+    myservo.write(pos);
+    delay(15);
+    
+    digitalWrite(trigPin, LOW); 
+    delayMicroseconds(2); 
+    digitalWrite(trigPin, HIGH); 
+    delayMicroseconds(10); 
+    digitalWrite(trigPin, LOW);
 
-  duration = pulseIn(echoPin, HIGH);
-  distance = (duration*.0343)/2;
+    duration = pulseIn(echoPin, HIGH);
+    distance = (duration*.0343)/2;
 
-  Serial.print("Distance: "); 
-  Serial.println(distance); 
-  delay(100); 
+    Serial.print("Distance: "); 
+    Serial.println(distance); 
+    delay(100); 
 
-  if (distance < 40) {
-  //both motors forward
-  digitalWrite(in1, HIGH);
-  digitalWrite(in2, LOW);
-  analogWrite(enA, 1);
 
-  digitalWrite(in3, HIGH);
-  digitalWrite(in4, LOW);
-  analogWrite(enB, 1);
+    if (distance < range) {
+      //both motors forward
+      digitalWrite(in1, HIGH);
+      digitalWrite(in2, LOW);
+      analogWrite(enA, 1);
 
-  delay(4000);
-  }
+      digitalWrite(in3, HIGH);
+      digitalWrite(in4, LOW);
+      analogWrite(enB, 1);
 
-  else if (distance >= 40) {
-  //motor opposite direction
-  digitalWrite(in1, LOW);
-  digitalWrite(in2, HIGH);  
-  digitalWrite(in3, LOW);
-  digitalWrite(in4, HIGH); 
+      delay(1000);
+     }
+
+    else if (distance >= range) {
+      //motor opposite direction
+      digitalWrite(in1, LOW);
+      digitalWrite(in2, HIGH);  
+      digitalWrite(in3, LOW);
+      digitalWrite(in4, HIGH); 
  
-  delay(4000);
-  }
+      delay(1000);
+     }
+  
+   turn off motors
+   digitalWrite(in1, LOW);
+   digitalWrite(in2, LOW);  
+   digitalWrite(in3, LOW);
+   digitalWrite(in4, LOW);
+
+
+   pos += 90;
+   }
+
+   while(pos >= 180){
+      pos -= 90;
+   
+      if (distance < range) {
+        // both motors forward
+        digitalWrite(in1, HIGH);
+        digitalWrite(in2, LOW);
+        analogWrite(enA, 1);
+
+        digitalWrite(in3, HIGH);
+        digitalWrite(in4, LOW);
+        analogWrite(enB, 1);
+
+        delay(1000);
+      }
+
+      else if (distance >= range) {
+        // motor opposite direction
+        digitalWrite(in1, LOW);
+        digitalWrite(in2, HIGH);  
+        digitalWrite(in3, LOW);
+        digitalWrite(in4, HIGH); 
+ 
+        delay(1000);
+      }
+  
+    //turn off motors
+    digitalWrite(in1, LOW);
+    digitalWrite(in2, LOW);  
+    digitalWrite(in3, LOW);
+    digitalWrite(in4, LOW);
+   }
+
+  //if (distance < 40) {
+  //both motors forward
+  //digitalWrite(in1, HIGH);
+  //digitalWrite(in2, LOW);
+  //analogWrite(enA, 1);
+
+  //digitalWrite(in3, HIGH);
+  //digitalWrite(in4, LOW);
+  //analogWrite(enB, 1);
+
+  //delay(4000);
+  //}
+
+  //else if (distance >= 40) {
+  //motor opposite direction
+  //digitalWrite(in1, LOW);
+  //digitalWrite(in2, HIGH);  
+  //digitalWrite(in3, LOW);
+  //digitalWrite(in4, HIGH); 
+ 
+//  delay(4000);
+  //}
   
   //turn off motors
-  digitalWrite(in1, LOW);
-  digitalWrite(in2, LOW);  
-  digitalWrite(in3, LOW);
-  digitalWrite(in4, LOW);
+  //digitalWrite(in1, LOW);
+  //digitalWrite(in2, LOW);  
+  //digitalWrite(in3, LOW);
+  //digitalWrite(in4, LOW);
  
 }
