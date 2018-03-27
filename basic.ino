@@ -1,3 +1,6 @@
+#include <Servo.h>
+
+Servo myservo;
 
 //motor A
 const int enA = 9;
@@ -79,7 +82,7 @@ void loop () {
       delay(1000);
      }
   
-   turn off motors
+   //turn off motors
    digitalWrite(in1, LOW);
    digitalWrite(in2, LOW);  
    digitalWrite(in3, LOW);
@@ -121,34 +124,5 @@ void loop () {
     digitalWrite(in3, LOW);
     digitalWrite(in4, LOW);
    }
-
-  //if (distance < 40) {
-  //both motors forward
-  //digitalWrite(in1, HIGH);
-  //digitalWrite(in2, LOW);
-  //analogWrite(enA, 1);
-
-  //digitalWrite(in3, HIGH);
-  //digitalWrite(in4, LOW);
-  //analogWrite(enB, 1);
-
-  //delay(4000);
-  //}
-
-  //else if (distance >= 40) {
-  //motor opposite direction
-  //digitalWrite(in1, LOW);
-  //digitalWrite(in2, HIGH);  
-  //digitalWrite(in3, LOW);
-  //digitalWrite(in4, HIGH); 
- 
-//  delay(4000);
-  //}
-  
-  //turn off motors
-  //digitalWrite(in1, LOW);
-  //digitalWrite(in2, LOW);  
-  //digitalWrite(in3, LOW);
-  //digitalWrite(in4, LOW);
  
 }
