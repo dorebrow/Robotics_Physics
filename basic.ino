@@ -73,7 +73,7 @@ void loop () {
       digitalWrite(in4, LOW);
       analogWrite(enB, 100);
 
-      delay(1000);
+      delay(100);
      }
 
     else if (distance >= range) {
@@ -83,7 +83,7 @@ void loop () {
       digitalWrite(in3, LOW);
       digitalWrite(in4, HIGH); 
  
-      delay(1000);
+      delay(100);
      }
   
    //turn off motors
@@ -115,7 +115,7 @@ void loop () {
         digitalWrite(in4, LOW);
         analogWrite(enB, 100);
 
-        delay(1000);
+        delay(100);
       }
 
       else if (distance >= range) {
@@ -125,7 +125,7 @@ void loop () {
         digitalWrite(in3, LOW);
         digitalWrite(in4, HIGH); 
  
-        delay(1000);
+        delay(100);
       }
   
     //turn off motors
