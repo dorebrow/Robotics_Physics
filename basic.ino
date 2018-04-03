@@ -127,6 +127,8 @@ void loop () {
  
         delay(100);
       }
+     
+    pos = 0;
   
     //turn off motors
     digitalWrite(in1, LOW);
