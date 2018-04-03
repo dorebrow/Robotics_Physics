@@ -26,6 +26,9 @@ int pos = 0;
 //range variable
 int range = 60;
 
+//scanning angle
+int angle = 45;
+
 void setup() {
   myservo.attach(3);
   
@@ -90,12 +93,12 @@ void loop () {
    digitalWrite(in4, LOW);
 
 
-   pos += 90;
+   pos += angle;
    }
    
    while(pos >= 0){
       Serial.print(pos);
-      pos -= 90;
+      pos -= angle;
       myservo.write(pos);
       delay(15);
       
