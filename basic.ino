@@ -2,12 +2,12 @@
 
 Servo myservo;
 
-//motor A
+//motor BACK
 const int enA = 9;
 const int in1 = 5;
 const int in2 = 4;
 
-//motor B
+//motor FRONT
 const int enB = 6;
 const int in3 = 8;
 const int in4 = 7;
@@ -61,80 +61,86 @@ void loop () {
     Serial.println(distance); 
     delay(15); 
 
-   Serial.print(pos);
+    if (distance >= range) {
+      //both motors BACK
+      analogWrite(enA, 10);
+      analogWrite(in1, 145);
+      analogWrite(in2, 0);
+      //analogWrite(enA, 10);
 
-    if (distance < range) {
-      //both motors forward
-      digitalWrite(in1, HIGH);
-      digitalWrite(in2, LOW);
-      analogWrite(enA, 100);
-
+      //wheels turn
+      analogWrite(enB, 100);
       digitalWrite(in3, HIGH);
       digitalWrite(in4, LOW);
-      analogWrite(enB, 100);
+      //analogWrite(enB, 100);
 
       delay(100);
      }
 
-    else if (distance >= range) {
+    else if (distance < range) {
       //motor opposite direction
-      digitalWrite(in1, LOW);
-      digitalWrite(in2, HIGH);  
+      analogWrite(enA, 10);
+      analogWrite(in1, 0);
+      analogWrite(in2, 145);  
+
+      //wheels straight
+      analogWrite(enB, 100);
       digitalWrite(in3, LOW);
-      digitalWrite(in4, HIGH); 
+      digitalWrite(in4, LOW); 
  
       delay(100);
      }
-  
-   //turn off motors
-   digitalWrite(in1, LOW);
-   digitalWrite(in2, LOW);  
-   digitalWrite(in3, LOW);
-   digitalWrite(in4, LOW);
 
 
    pos += angle;
+   Serial.print("pos");
    }
    
    while(pos >= 0){
-      Serial.print(pos);
       pos -= angle;
       myservo.write(pos);
       delay(15);
+
+    digitalWrite(trigPin, LOW); 
+    delayMicroseconds(2); 
+    digitalWrite(trigPin, HIGH); 
+    delayMicroseconds(10); 
+    digitalWrite(trigPin, LOW);
       
     duration = pulseIn(echoPin, HIGH);
     distance = (duration*.0343)/2;
-   
-      if (distance < range) {
-        // both motors forward
-        digitalWrite(in1, HIGH);
-        digitalWrite(in2, LOW);
-        analogWrite(enA, 100);
 
+    Serial.print("Distance: "); 
+    Serial.println(distance); 
+   
+      if (distance >= range) {
+        // both motors BACK
+        analogWrite(enA, 10);
+        analogWrite(in1, 145);
+        analogWrite(in2, 0);
+        //analogWrite(enA, 10);
+
+        analogWrite(enB, 100);
         digitalWrite(in3, HIGH);
         digitalWrite(in4, LOW);
-        analogWrite(enB, 100);
+        //analogWrite(enB, 100);
 
         delay(100);
       }
 
-      else if (distance >= range) {
+      else if (distance < range) {
         // motor opposite direction
-        digitalWrite(in1, LOW);
-        digitalWrite(in2, HIGH);  
+        analogWrite(enA, 10);
+        analogWrite(in1, 0);
+        analogWrite(in2, 145);  
+
+        analogWrite(enB, 100);
         digitalWrite(in3, LOW);
-        digitalWrite(in4, HIGH); 
+        digitalWrite(in4, LOW); 
  
         delay(100);
       }
-     
-    pos = 0;
-  
-    //turn off motors
-    digitalWrite(in1, LOW);
-    digitalWrite(in2, LOW);  
-    digitalWrite(in3, LOW);
-    digitalWrite(in4, LOW);
+    
    }
  
 }
