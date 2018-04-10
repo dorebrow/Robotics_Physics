@@ -66,15 +66,13 @@ void loop () {
       analogWrite(enA, 10);
       analogWrite(in1, 145);
       analogWrite(in2, 0);
-      //analogWrite(enA, 10);
 
       //wheels turn
       analogWrite(enB, 100);
       digitalWrite(in3, HIGH);
       digitalWrite(in4, LOW);
-      //analogWrite(enB, 100);
 
-      delay(100);
+      delay(200);
      }
 
     else if (distance < range) {
@@ -88,7 +86,7 @@ void loop () {
       digitalWrite(in3, LOW);
       digitalWrite(in4, LOW); 
  
-      delay(100);
+      delay(300);
      }
 
 
@@ -118,14 +116,12 @@ void loop () {
         analogWrite(enA, 10);
         analogWrite(in1, 145);
         analogWrite(in2, 0);
-        //analogWrite(enA, 10);
 
         analogWrite(enB, 100);
         digitalWrite(in3, HIGH);
         digitalWrite(in4, LOW);
-        //analogWrite(enB, 100);
 
-        delay(100);
+        delay(200);
       }
 
       else if (distance < range) {
@@ -138,7 +134,7 @@ void loop () {
         digitalWrite(in3, LOW);
         digitalWrite(in4, LOW); 
  
-        delay(100);
+        delay(300);
       }
     
    }
