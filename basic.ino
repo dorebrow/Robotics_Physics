@@ -29,6 +29,20 @@ int range = 60;
 //scanning angle
 int angle = 45;
 
+int distCheck(int pos){
+  myservo.write(pos);
+  delay(15);
+  
+  digitalWrite(trigPin, LOW); 
+  delayMicroseconds(2); 
+  digitalWrite(trigPin, HIGH); 
+  delayMicroseconds(10); 
+  digitalWrite(trigPin, LOW);
+
+  duration = pulseIn(echoPin, HIGH);
+  distance = (duration*.0343)/2;
+}
+
 void setup() {
   myservo.attach(3);
   
@@ -67,7 +81,7 @@ void loop () {
       analogWrite(in1, 145);
       analogWrite(in2, 0);
 
-      //wheels turn
+      //wheels turning
       analogWrite(enB, 100);
       digitalWrite(in3, HIGH);
       digitalWrite(in4, LOW);
@@ -76,7 +90,7 @@ void loop () {
      }
 
     else if (distance < range) {
-      //motor opposite direction
+      //motor forward
       analogWrite(enA, 10);
       analogWrite(in1, 0);
       analogWrite(in2, 145);  
@@ -85,7 +99,7 @@ void loop () {
       analogWrite(enB, 100);
       digitalWrite(in3, LOW);
       digitalWrite(in4, LOW); 
- 
+      
       delay(300);
      }
 
@@ -94,7 +108,7 @@ void loop () {
    Serial.print("pos");
    }
    
-   while(pos >= 0){
+   while(pos >= 270){
       pos -= angle;
       myservo.write(pos);
       delay(15);
@@ -117,6 +131,7 @@ void loop () {
         analogWrite(in1, 145);
         analogWrite(in2, 0);
 
+        //Wheels turning
         analogWrite(enB, 100);
         digitalWrite(in3, HIGH);
         digitalWrite(in4, LOW);
@@ -130,6 +145,7 @@ void loop () {
         analogWrite(in1, 0);
         analogWrite(in2, 145);  
 
+        //wheels straight
         analogWrite(enB, 100);
         digitalWrite(in3, LOW);
         digitalWrite(in4, LOW); 
