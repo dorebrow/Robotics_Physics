@@ -27,7 +27,7 @@ int pos = 0;
 int range = 60;
 
 //scanning angle
-int angle = 45;
+int angle = 30;
 
 int distCheck(int pos){
   myservo.write(pos);
@@ -75,7 +75,7 @@ void loop () {
     Serial.println(distance); 
     delay(15); 
 
-    if (distance >= range) {
+    if (distance <= range) {
       //both motors BACK
       analogWrite(enA, 10);
       analogWrite(in1, 145);
@@ -83,13 +83,17 @@ void loop () {
 
       //wheels turning
       analogWrite(enB, 100);
-      digitalWrite(in3, HIGH);
-      digitalWrite(in4, LOW);
+     // digitalWrite(in3, HIGH);
+      //digitalWrite(in4, LOW);
+      analogWrite(in3, 255);
+      analogWrite(in4, 0);
 
-      delay(200);
+      Serial.print("DIST >= RANGE : BACK");
+
+      delay(300);
      }
 
-    else if (distance < range) {
+    else if (distance > range) {
       //motor forward
       analogWrite(enA, 10);
       analogWrite(in1, 0);
@@ -100,7 +104,7 @@ void loop () {
       digitalWrite(in3, LOW);
       digitalWrite(in4, LOW); 
       
-      delay(300);
+      delay(200);
      }
 
 
@@ -108,7 +112,7 @@ void loop () {
    Serial.print("pos");
    }
    
-   while(pos >= 270){
+   while(pos >= 0){
       pos -= angle;
       myservo.write(pos);
       delay(15);
@@ -125,7 +129,7 @@ void loop () {
     Serial.print("Distance: "); 
     Serial.println(distance); 
    
-      if (distance >= range) {
+      if (distance <= range) {
         // both motors BACK
         analogWrite(enA, 10);
         analogWrite(in1, 145);
@@ -133,13 +137,17 @@ void loop () {
 
         //Wheels turning
         analogWrite(enB, 100);
-        digitalWrite(in3, HIGH);
-        digitalWrite(in4, LOW);
+        //digitalWrite(in3, HIGH);
+        //digitalWrite(in4, LOW);
+        analogWrite(in3, 255);
+        analogWrite(in4, 0);
 
-        delay(200);
+        Serial.print("DIST >= RANGE : BACK");
+
+        delay(300);
       }
 
-      else if (distance < range) {
+      else if (distance > range) {
         // motor opposite direction
         analogWrite(enA, 10);
         analogWrite(in1, 0);
@@ -150,7 +158,7 @@ void loop () {
         digitalWrite(in3, LOW);
         digitalWrite(in4, LOW); 
  
-        delay(300);
+        delay(200);
       }
     
    }
