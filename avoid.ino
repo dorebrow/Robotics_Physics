@@ -83,8 +83,6 @@ void loop () {
 
       //wheels turning
       analogWrite(enB, 100);
-     // digitalWrite(in3, HIGH);
-      //digitalWrite(in4, LOW);
       analogWrite(in3, 255);
       analogWrite(in4, 0);
 
@@ -106,7 +104,6 @@ void loop () {
       
       delay(200);
      }
-
 
    pos += angle;
    Serial.print("pos");
@@ -137,8 +134,6 @@ void loop () {
 
         //Wheels turning
         analogWrite(enB, 100);
-        //digitalWrite(in3, HIGH);
-        //digitalWrite(in4, LOW);
         analogWrite(in3, 255);
         analogWrite(in4, 0);
 
